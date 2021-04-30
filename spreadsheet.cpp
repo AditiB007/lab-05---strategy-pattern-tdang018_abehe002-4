@@ -15,6 +15,18 @@ void Spreadsheet::set_selection(Select* new_select)
     select = new_select;
 }
 
+// Implement print_selection
+void Spreadsheet::print_selection(std::ostream& out) const {
+    if(!select) {
+      for(int i=0; i<data.size(); ++i) {
+        for(int j=0; j<data.at(i).size(); ++j) {
+          out << cell_data(i, j) << " "; // separate row element outputs with space
+        }
+        out << std::endl; // separate row outputs with new line
+      }
+    }
+}
+
 void Spreadsheet::clear()
 {
     column_names.clear();
