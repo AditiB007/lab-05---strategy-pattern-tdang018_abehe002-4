@@ -25,6 +25,17 @@ void Spreadsheet::print_selection(std::ostream& out) const {
         out << std::endl; // separate row outputs with new line
       }
     }
+    else {
+      //out << "test" << std::endl;
+      for(int i=0; i<data.size(); ++i) { // loop through rows
+        if(select->select(this, i)) { //out << "test" << std::endl;
+          for(int j=0; j<data.at(i).size(); ++j) {
+            out << cell_data(i, j) << " "; // separate row element outputs with space
+          }
+          out << std::endl; // separate row outputs with new line
+        }
+      }
+    }
 }
 
 void Spreadsheet::clear()
