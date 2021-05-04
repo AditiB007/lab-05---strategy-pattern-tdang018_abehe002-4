@@ -25,6 +25,19 @@ void Spreadsheet::print_selection(std::ostream& out) const {
         out << std::endl; // separate row outputs with new line
       }
     }
+    else { // select is not null, search for all matching strings and output them
+      //std::cout << "select exists!" << std::endl;
+      for(int i=0; i<data.size(); ++i) { // loop through rows
+        //std::cout << "i: " + std::to_string(i)  << std::endl;
+        if(this->select->select(this, i)) { 
+          //std::cout << "match found!" << std::endl;
+          for(int j=0; j<data.at(i).size(); ++j) { // loop through row's strings
+            out << cell_data(i, j) << " "; // separate row element outputs with space
+          }
+          out << std::endl; // separate row outputs with new line
+        }
+      }
+    }
 }
 
 void Spreadsheet::clear()

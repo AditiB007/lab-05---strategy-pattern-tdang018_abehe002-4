@@ -1,5 +1,6 @@
 #include "spreadsheet.hpp"
 #include "select.hpp"
+#include "select_contains.h"
 
 #include <iostream>
 
@@ -21,7 +22,7 @@ int main(int argc, char* argv[])
     std::cout << std::endl;
 
     // Sample usage 1
-    // sheet.set_selection(new Select_Contains(&sheet,"Last","Dole"));
+    sheet.set_selection(new Select_Contains(&sheet,"Last","Dole"));
     sheet.print_selection(std::cout);
     std::cout << std::endl;
     
@@ -32,8 +33,8 @@ int main(int argc, char* argv[])
     //         new Select_Not(
     //             new Select_Contains(&sheet,"First","v"))));
     
-    sheet.print_selection(std::cout);
-    std::cout << std::endl;
+    //sheet.print_selection(std::cout);
+    //std::cout << std::endl;
 
     // Sample usage 3
     // sheet.set_selection(
@@ -43,8 +44,8 @@ int main(int argc, char* argv[])
     //             new Select_Contains(&sheet,"Last","on"),
     //             new Select_Contains(&sheet,"Age","9"))));
 
-    sheet.print_selection(std::cout);
-    std::cout << std::endl;
+    //sheet.print_selection(std::cout);
+    //std::cout << std::endl;
 
     return 0;
 }
