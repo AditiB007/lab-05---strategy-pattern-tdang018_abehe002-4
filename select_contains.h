@@ -29,8 +29,9 @@ public:
       std::string entry_substr = "";
       for(int i=0; i<entry.size(); ++i) {
         if(i+substring.size() > entry.size()) { return false; }
-        entry_substr = entry.substr(i, i+substring.size());
+        entry_substr = entry.substr(i, substring.size());
         if(entry_substr == substring) { return true; }
+        //std::cout << entry_substr << ", " << substring << std::endl;
       }
       return false;
       
