@@ -18,10 +18,10 @@ TEST(OrTest, TrueTest) {
   sheet.add_row({"Dominick","Dole","22","communications"});
   sheet.add_row({"George","Genius","9","astrophysics"});
 
-  Select_Or test = new Select_Or(new Select_Contains(sheet, "Last", "Summers"),
-                                 new Select_Contains(sheet, "Last", "Genius"));
+  Select_Or* test = new Select_Or(new Select_Contains(&sheet, "Last", "Summers"),
+                                 new Select_Contains(&sheet, "Last", "Genius"));
   sheet.set_selection(test);
-  EXPECT_TRUE(test->select(sheet, 8));
+  EXPECT_TRUE(test->select(&sheet, 8));
 }
 
 TEST(OrTest, FalseTest) {
@@ -37,10 +37,10 @@ TEST(OrTest, FalseTest) {
   sheet.add_row({"Dominick","Dole","22","communications"});
   sheet.add_row({"George","Genius","9","astrophysics"});
 
-  Select_Or test = new Select_Or(new Select_Contains(sheet, "First", "Aditi"),
-                                 new Select_Contains(sheet, "Last", "Behera"));
+  Select_Or* test = new Select_Or(new Select_Contains(&sheet, "First", "Aditi"),
+                                 new Select_Contains(&sheet, "Last", "Behera"));
   sheet.set_selection(test);
-  EXPECT_FALSE(test->select(sheet, 0));
+  EXPECT_FALSE(test->select(&sheet, 0));
 }
 
 TEST(OrTest, HalfHalfTest) {
@@ -56,10 +56,10 @@ TEST(OrTest, HalfHalfTest) {
   sheet.add_row({"Dominick","Dole","22","communications"});
   sheet.add_row({"George","Genius","9","astrophysics"});
 
-  Select_Or test = new Select_Or(new Select_Contains(sheet, "First", "Aditi"),
-                                 new Select_Contains(sheet, "Last", "Andrews"));
+  Select_Or* test = new Select_Or(new Select_Contains(&sheet, "First", "Aditi"),
+                                 new Select_Contains(&sheet, "Last", "Andrews"));
   sheet.set_selection(test);
-  EXPECT_TRUE(test->select(sheet, 0));
+  EXPECT_TRUE(test->select(&sheet, 0));
 
 }
 
@@ -76,10 +76,10 @@ TEST(OrTest, EmptyTest) {
   sheet.add_row({"Dominick","Dole","22","communications"});
   sheet.add_row({"George","Genius","9","astrophysics"});
 
-  Select_Or test = new Select_Or(new Select_Contains(sheet, "First", ""),
-                                 new Select_Contains(sheet, "Last", ""));
+  Select_Or* test = new Select_Or(new Select_Contains(&sheet, "First", " "),
+                                 new Select_Contains(&sheet, "Last", " "));
   sheet.set_selection(test);
-  EXPECT_FALSE(test->select(sheet, 1));
+  EXPECT_FALSE(test->select(&sheet, 1));
 }
 
 TEST(OrTest, AndTest) {
@@ -95,11 +95,11 @@ TEST(OrTest, AndTest) {
   sheet.add_row({"Dominick","Dole","22","communications"});
   sheet.add_row({"George","Genius","9","astrophysics"});
 
-  Select_Or test = new Select_Or(new Select_And(new Select_Contains(sheet, "First", "Amanda"),
-                                                new Select_Contains(sheet, "Last", "Andrews")),
-                                 new Select_Contains(sheet, "First", "Aditi"));
+  Select_Or* test = new Select_Or(new Select_And(new Select_Contains(&sheet, "First", "Amanda"),
+                                                new Select_Contains(&sheet, "Last", "Andrews")),
+                                 new Select_Contains(&sheet, "First", "Aditi"));
   sheet.set_selection(test);
-  EXPECT_TRUE(test->select(sheet, 0));
+  EXPECT_TRUE(test->select(&sheet, 0));
 }
 
 TEST(OrTest, NotTest) {
@@ -115,10 +115,10 @@ TEST(OrTest, NotTest) {
   sheet.add_row({"Dominick","Dole","22","communications"});
   sheet.add_row({"George","Genius","9","astrophysics"});
 
-  Select_Or test = new Select_Or(new Select_Not(new Select_Contains(sheet, "First", "Aditi")),
-                                 new Select_Not(new Select_Contains(sheet, "Last", "Behera")));
+  Select_Or* test = new Select_Or(new Select_Not(new Select_Contains(&sheet, "First", "Aditi")),
+                                 new Select_Not(new Select_Contains(&sheet, "Last", "Behera")));
   sheet.set_selection(test);
-  EXPECT_TRUE(test->select(sheet, 2));
+  EXPECT_TRUE(test->select(&sheet, 2));
 }
 
 #endif //__SELECT_OR_TEST_H__

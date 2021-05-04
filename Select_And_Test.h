@@ -76,10 +76,10 @@ TEST(AndTest, EmptyTest) {
   sheet.add_row({"Dominick","Dole","22","communications"});
   sheet.add_row({"George","Genius","9","astrophysics"});
 
-  Select_And* test = new Select_And(new Select_Contains(&sheet, "First", ""),
-                                   new Select_Contains(&sheet, "Last", ""));
+  Select_And* test = new Select_And(new Select_Contains(&sheet, "First", " "),
+                                   new Select_Contains(&sheet, "Last", " "));
   sheet.set_selection(test);
-  EXPECT_TRUE(test->select(&sheet, 1));
+  EXPECT_FALSE(test->select(&sheet, 1));
 }
 
 TEST(AndTest, OrTest) {

@@ -61,9 +61,9 @@ TEST(NotTest, EmptyTest) {
   sheet.add_row({"Dominick","Dole","22","communications"});
   sheet.add_row({"George","Genius","9","astrophysics"});
 
-  Select_Not* test = new Select_Not(new Select_Contains(&sheet, "First", ""));
+  Select_Not* test = new Select_Not(new Select_Contains(&sheet, "First", " "));
   sheet.set_selection(test);
-  EXPECT_FALSE(test->select(&sheet, 1));
+  EXPECT_TRUE(test->select(&sheet, 1));
 }
 
 TEST(NotTest, OrTest) {
