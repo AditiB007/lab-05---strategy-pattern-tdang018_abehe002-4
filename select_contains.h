@@ -23,18 +23,36 @@ public:
       //std::cout << "data at cell(row, column): " + data << std::endl;
       //std::cout << "row: " + std::to_string(row) << std::endl;
       //std::cout << "column: " + std::to_string(column) << std::endl;
-      for(int i=0; i<entry.size(); ++i) { // assume entry is longer than substring, loop through it
+     
+      if(substring.size() > entry.size()) { return false; }
+      
+      std::string entry_substr = "";
+      for(int i=0; i<entry.size(); ++i) {
+        if(i+substring.size() > entry.size()) { return false; }
+        entry_substr = entry.substr(i, substring.size());
+        if(entry_substr == substring) { return true; }
+        //std::cout << entry_substr << ", " << substring << std::endl;
+      }
+      return false;
+      
+      /*
+      for(int i=0; i<entry.size(); ++i) { // entry, loop through it
         //std::cout << "i: " << std::to_string(i) << " " << entry.at(i) << std::endl;
         int count = 0;
-        for(int j=0; j<substring.size(); ++j) { // assume substring is shorter, loop through it
+        for(int j=0; j<substring.size(); ++j) { // substring, loop through it
            //std::cout << "j: " << std::to_string(j)  << " " << substring.at(j) << " " << std::endl;
            if(i+j > entry.size()) { return false; }
            if(entry.at(i+j) == substring.at(j)) { ++count; }
+           std::cout << "entry.at(i+j): " << entry.at(i+j) << " substring.at(j): " << substring.at(j) << std::endl;
+           if(count == substring.size()) { return true; }
+           //if(i+j+1 > entry.size()) {return false; }
         }
-        if(count == substring.size()) { return true; }
+        //if(count == substring.size()) { return true; }
         // able to loop through both strings without the substring having any mismatches
-        else { return false; }
+        //else { return false; }
       }
+      return false;
+      */
     }
 };
 

@@ -2,6 +2,10 @@
 #include "select.hpp"
 #include "select_contains.h"
 
+#include "Select_Not.h"
+#include "Select_And.h"
+#include "Select_Or.h"
+
 #include <iostream>
 
 int main(int argc, char* argv[])
@@ -22,30 +26,45 @@ int main(int argc, char* argv[])
     std::cout << std::endl;
 
     // Sample usage 1
-    sheet.set_selection(new Select_Contains(&sheet,"Last","Dole"));
+    sheet.set_selection(new Select_Contains(&sheet, "Last", "Dole"));
     sheet.print_selection(std::cout);
     std::cout << std::endl;
     
-    // Sample usage 2
-    // sheet.set_selection(
-    //     new Select_And(
-    //         new Select_Contains(&sheet,"Last","Dole"),
-    //         new Select_Not(
-    //             new Select_Contains(&sheet,"First","v"))));
+    // Custom sample usages
     
+    //sheet.set_selection( new Select_And(
+      //new Select_Contains(&sheet, "Major", "computer science"),
+      //new Select_Contains(&sheet, "Major", "computer science")
+    //));
+    
+    //sheet.set_selection( new Select_Or(
+      //new Select_Contains(&sheet, "Last", "Becker"),
+      //new Select_Contains(&sheet, "Last", "Conners")
+    //));
+
     //sheet.print_selection(std::cout);
     //std::cout << std::endl;
+
+    // Sample usage 2
+    sheet.set_selection(
+        new Select_And(
+             new Select_Contains(&sheet,"Last","Dole"),
+             new Select_Not(
+                 new Select_Contains(&sheet,"First","v"))));
+    
+    sheet.print_selection(std::cout);
+    std::cout << std::endl;
 
     // Sample usage 3
-    // sheet.set_selection(
-    //     new Select_Or(
-    //         new Select_Contains(&sheet,"First","Amanda"),
-    //         new Select_Or(
-    //             new Select_Contains(&sheet,"Last","on"),
-    //             new Select_Contains(&sheet,"Age","9"))));
+    sheet.set_selection(
+        new Select_Or(
+             new Select_Contains(&sheet,"First","Amanda"),
+             new Select_Or(
+                 new Select_Contains(&sheet,"Last","on"),
+                 new Select_Contains(&sheet,"Age","9"))));
 
-    //sheet.print_selection(std::cout);
-    //std::cout << std::endl;
+    sheet.print_selection(std::cout);
+    std::cout << std::endl;
 
     return 0;
 }
