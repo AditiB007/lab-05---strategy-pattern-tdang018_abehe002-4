@@ -24,6 +24,11 @@ class Select_And: public Select {
         return false;
       }
     }
+
+    ~Select_And() {
+      delete select1;
+      delete select2;
+    }
 };
 
 #endif //__SELECT_AND_H__

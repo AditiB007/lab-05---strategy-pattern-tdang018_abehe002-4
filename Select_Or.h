@@ -24,6 +24,11 @@ class Select_Or: public Select {
         return false;
       }
     }
+
+    ~Select_Or() {
+      delete select1;
+      delete select2;
+    }
 };
 
 #endif //__SELECT_OR_H__
