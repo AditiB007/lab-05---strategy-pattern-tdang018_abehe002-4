@@ -15,6 +15,11 @@ class Select_Not: public Select {
     bool select(const Spreadsheet* sheet, int row) const {
       return !(selection->select(sheet, row)); 
     }
+
+    ~Select_Not() {
+      //selection->~Select();
+      delete selection;
+    }
 };
 
 #endif //__SELECT_NOT_H__
