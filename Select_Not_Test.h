@@ -13,8 +13,8 @@
 
 TEST(NotTest, TrueTest) {
   Spreadsheet sheet;
-  const std::vector<std::string> names = {"First","Last","Age","Major"};
-  sheet.set_column_names(&names); //{"First","Last","Age","Major"});
+  //const std::vector<std::string> names = {"First","Last","Age","Major"};
+  sheet.set_column_names({"First","Last","Age","Major"});
   //sheet.add_row({"Amanda","Andrews","22","business"});
   //sheet.add_row({"Brian","Becker","21","computer science"});
   //sheet.add_row({"Carol","Conners","21","computer science"});

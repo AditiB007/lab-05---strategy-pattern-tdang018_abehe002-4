@@ -2,6 +2,7 @@
 #define __SELECT_NOT_H__
 
 #include "select.hpp"
+#include "spreadsheet.hpp"
 
 class Select_Not: public Select {
   private:
