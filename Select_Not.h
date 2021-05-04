@@ -5,13 +5,15 @@
 
 class Select_Not: public Select {
   private:
-    Select select;
+    Select* selection;
 
   public:
-    Select_Not(Select selectPar): select(selectPar) {}
+    Select_Not(Select* selectPar) {
+      selection = selectPar;
+    }
 
     bool select(const Spreadsheet* sheet, int row) const {
-      return !(select->select(sheet, row)); 
+      return !(selection->select(sheet, row)); 
     }
 };
 
